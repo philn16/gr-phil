@@ -24,7 +24,7 @@ from gnuradio import gr
 
 class periodicPattern(gr.sync_block):
 	"""
-	docstring for block periodicPattern
+	Documentation can be found in XML file
 	"""
 	def __init__(self, patternVector, type,debug):
 		if debug:
@@ -32,6 +32,12 @@ class periodicPattern(gr.sync_block):
 		self.type={"float":numpy.float32,"complex":numpy.complex64}[type]
 		gr.sync_block.__init__(self, name="periodicPattern", in_sig=None, out_sig=[(self.type,1)]) 
 		self.patternVector=patternVector
+		# duplicating the pattern vector can yield performance gains (if the vecotr is small)
+		desiredListLen=2**12
+		repetitions=(desiredListLen//len(self.patternVector))
+		self.patternVector=numpy.array(list(self.patternVector)*repetitions,dtype=self.type)
+		if debug:
+			print("repeating pattern "+str(repetitions)+" times for performance")
 		# For each work cycle, this is the first index to go to the output
 		self.count=0
 
@@ -50,7 +56,6 @@ class periodicPattern(gr.sync_block):
 			# update the index to start taking from
 			self.count=(self.count+toTake)%len(self.patternVector)
 			numOutputs+=toTake
-		
-		#~ out[:] = numpy.array(range(len(out)))
+	
 		return len(output_items[0])
 

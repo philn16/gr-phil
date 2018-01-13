@@ -52,7 +52,7 @@
 	<type>$type.output</type>
 </source>
 
- 
+
 <doc>
 This block outputs a pattern and continues to output the pattern.
 
