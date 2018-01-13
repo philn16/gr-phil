@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 # 
-# Copyright 2018 <+YOU OR YOUR COMPANY+>.
+# Copyright 2018 Philip
 # 
 # This is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -23,20 +23,34 @@ import numpy
 from gnuradio import gr
 
 class periodicPattern(gr.sync_block):
-    """
-    docstring for block periodicPattern
-    """
-    def __init__(self, patternVector, type):
-        gr.sync_block.__init__(self,
-            name="periodicPattern",
-            in_sig=[<+numpy.float+>],
-            out_sig=[<+numpy.float+>])
+	"""
+	docstring for block periodicPattern
+	"""
+	def __init__(self, patternVector, type,debug):
+		if debug:
+			print("type is "+str(type))
+		self.type={"float":numpy.float32,"complex":numpy.complex64}[type]
+		gr.sync_block.__init__(self, name="periodicPattern", in_sig=None, out_sig=[(self.type,1)]) 
+		self.patternVector=patternVector
+		# For each work cycle, this is the first index to go to the output
+		self.count=0
 
-
-    def work(self, input_items, output_items):
-        in0 = input_items[0]
-        out = output_items[0]
-        # <+signal processing here+>
-        out[:] = in0
-        return len(output_items[0])
+	def work(self, input_items, output_items):
+		out = output_items[0]
+		numOutputs=0
+		
+		while numOutputs != len(out):
+			# Each round take as much as the pattern vector has keeping in mind we start taking from the first index...
+			toTake=len(self.patternVector)-self.count
+			# ... but if the pattern vector will give more than needed, only take the difference
+			if len(out)-numOutputs < toTake:
+				toTake=len(out)-numOutputs
+			# take from the pattern vector starting at the current count
+			out[numOutputs:numOutputs+toTake]=self.patternVector[self.count:self.count+toTake]
+			# update the index to start taking from
+			self.count=(self.count+toTake)%len(self.patternVector)
+			numOutputs+=toTake
+		
+		#~ out[:] = numpy.array(range(len(out)))
+		return len(output_items[0])
 

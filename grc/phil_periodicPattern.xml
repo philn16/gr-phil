@@ -4,7 +4,7 @@
   <key>phil_periodicPattern</key>
   <category>[phil]</category>
   <import>import phil</import>
-  <make>phil.periodicPattern($patternVector, $type)</make>
+  <make>phil.periodicPattern($patternVector, $type.name,$debug)</make>
  
  
  
@@ -18,16 +18,26 @@
 	<type>enum</type>
 	<option>
 		<name>complex</name>
-		<key>ccc</key>
+		<key>complex</key>
+		<opt>name:"complex"</opt>
 		<opt>output:complex</opt>
 		<opt>taps:complex_vector</opt>
 	</option>
 	<option>
 		<name>float</name>
-		<key>ccf</key>
+		<key>float</key>
+		<opt>name:"float"</opt>
 		<opt>output:float</opt>
 		<opt>taps:real_vector</opt>
 	</option>
+</param>
+
+<param>
+	<name>debug</name>
+	<key>debug</key>
+	<type>enum</type>
+	<option><name>True</name><key>1</key></option>
+	<option><name>False</name><key>0</key></option>
 </param>
 
 <param>
