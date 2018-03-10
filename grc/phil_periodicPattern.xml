@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <block>
-  <name>periodicPattern</name>
+  <name>periodicPattern DEPRECATED</name>
   <key>phil_periodicPattern</key>
   <category>[phil]</category>
   <import>import phil</import>
@@ -58,6 +58,8 @@ This block outputs a pattern and continues to output the pattern.
 
 Possible uses:
 The frequency reponse of a filter can be found by taking the FFT of it's impulse response. To get an inpulse response the periodic pattern could be ([1]+[0]*1023) followed by a 1024 point FFT
+
+Note this is deprecated due to the existance of the Vector Sink
 
 </doc>
  
