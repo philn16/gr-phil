@@ -10,11 +10,11 @@ options:
     gen_linking: dynamic
     generate_options: qt_gui
     hier_block_src_path: '.:'
-    id: defaultd
+    id: mux
     max_nouts: '0'
     output_language: python
     placement: (0,0)
-    qt_qss_theme: ''
+    qt_qss_theme: dark.qss
     realtime_scheduling: ''
     run: 'True'
     run_command: '{python} -u {filename}'
@@ -41,22 +41,36 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [245, 26]
+    coordinate: [188, 17]
     rotation: 0
     state: enabled
 - name: select
-  id: variable_qtgui_entry
+  id: variable_qtgui_chooser
   parameters:
     comment: ''
     gui_hint: ''
     label: ''
+    label0: '0'
+    label1: '1'
+    label2: '2'
+    label3: ''
+    label4: ''
+    labels: '[]'
+    num_opts: '3'
+    option1: '1'
+    option2: '2'
+    option3: '3'
+    option4: '4'
+    options: '[0, 1, 2]'
+    orient: Qt.QVBoxLayout
     type: int
     value: '0'
+    widget: combo_box
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [460, 47]
+    coordinate: [281, 14]
     rotation: 0
     state: true
 - name: analog_sig_source_x_0
@@ -78,7 +92,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [441, 410]
+    coordinate: [106, 211]
     rotation: 0
     state: true
 - name: analog_sig_source_x_0_0
@@ -100,7 +114,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [440, 603]
+    coordinate: [106, 351]
     rotation: 0
     state: true
 - name: analog_sig_source_x_0_0_0
@@ -122,7 +136,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [437, 801]
+    coordinate: [108, 488]
     rotation: 0
     state: true
 - name: blocks_throttle_0
@@ -141,9 +155,9 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1565, 580]
+    coordinate: [601, 392]
     rotation: 0
-    state: true
+    state: enabled
 - name: gr_phil_mux_0
   id: gr_phil_mux
   parameters:
@@ -158,9 +172,9 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1068, 569]
+    coordinate: [421, 361]
     rotation: 0
-    state: true
+    state: enabled
 - name: qtgui_sink_x_0
   id: qtgui_sink_x
   parameters:
@@ -187,7 +201,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1935, 561]
+    coordinate: [849, 373]
     rotation: 0
     state: true
 
