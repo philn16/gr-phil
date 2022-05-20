@@ -4,7 +4,9 @@ category: '[gr_phil]'
 
 templates:
   imports: import gr_phil
-  make: gr_phil.mux(${select})
+  make: gr_phil.mux(${select},${num_inputs})
+  callbacks:
+  - set_select(${select})
 
 #  Make one 'parameters' list entry for every parameter you want settable from the GUI.
 #     Keys include:
@@ -15,6 +17,11 @@ parameters:
 - id: select
   label: select
   dtype: int
+- id: num_inputs
+  label: Num Inputs
+  dtype: int
+  default: '2'
+  hide: part
 
 #  Make one 'inputs' list entry per input and one 'outputs' list entry per output.
 #  Keys include:
@@ -28,6 +35,7 @@ inputs:
   domain: stream
   dtype: float
   vlen: 1
+  multiplicity: ${ num_inputs }
 
 outputs:
 - label: out0

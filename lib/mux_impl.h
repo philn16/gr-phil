@@ -10,9 +10,14 @@ class mux_impl : public mux {
   private:
 	// Nothing to declare in this block.
 
+	int select;
+	int num_inputs;
+
   public:
-	mux_impl(int select);
+	mux_impl(int select, int num_inputs);
 	~mux_impl();
+
+	void set_select(int select);
 
 	// Where all the action really happens
 	int work(

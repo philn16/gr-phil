@@ -24,7 +24,9 @@ class GR_PHIL_API mux : virtual public gr::sync_block {
 	 * class. gr_phil::mux::make is the public interface for
 	 * creating new instances.
 	 */
-	static sptr make(int select);
+	static sptr make(int select, int num_inputs);
+
+	virtual void set_select(int select) = 0;
 };
 
 } // namespace gr_phil
