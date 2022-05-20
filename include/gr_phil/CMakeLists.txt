@@ -23,5 +23,5 @@
 ########################################################################
 install(FILES
     api.h
-    DESTINATION include/gr_phil
+    mux.h DESTINATION include/gr_phil
 )

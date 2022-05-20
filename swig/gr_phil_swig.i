@@ -8,5 +8,8 @@
 %include "gr_phil_swig_doc.i"
 
 %{
+#include "gr_phil/mux.h"
 %}
 
+%include "gr_phil/mux.h"
+GR_SWIG_BLOCK_MAGIC2(gr_phil, mux);
