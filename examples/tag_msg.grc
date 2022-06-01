@@ -14,7 +14,7 @@ options:
     max_nouts: '0'
     output_language: python
     placement: (0,0)
-    qt_qss_theme: ''
+    qt_qss_theme: dark.qss
     realtime_scheduling: ''
     run: 'True'
     run_command: '{python} -u {filename}'
@@ -32,16 +32,31 @@ options:
     state: enabled
 
 blocks:
-- name: samp_rate
-  id: variable
+- name: period
+  id: variable_qtgui_entry
   parameters:
     comment: ''
-    value: '32000'
+    gui_hint: 1,1
+    label: ''
+    type: int
+    value: '200'
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [184, 12]
+    coordinate: [416, 28]
+    rotation: 0
+    state: true
+- name: samp_rate
+  id: variable
+  parameters:
+    comment: ''
+    value: 100e3
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [255, 17]
     rotation: 0
     state: enabled
 - name: analog_sig_source_x_0
@@ -51,12 +66,12 @@ blocks:
     alias: ''
     amp: '1'
     comment: ''
-    freq: '1000'
+    freq: '0.01'
     maxoutbuf: '0'
     minoutbuf: '0'
     offset: '0'
     phase: '0'
-    samp_rate: samp_rate
+    samp_rate: '1'
     type: float
     waveform: analog.GR_COS_WAVE
   states:
@@ -82,7 +97,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [722, 288]
+    coordinate: [748, 292]
     rotation: 0
     state: true
 - name: gr_phil_msg_tagger_0
@@ -94,12 +109,12 @@ blocks:
     dtype: float
     maxoutbuf: '0'
     minoutbuf: '0'
-    period: '100'
+    period: period
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [513, 277]
+    coordinate: [539, 293]
     rotation: 0
     state: enabled
 - name: qtgui_edit_box_msg_0
@@ -121,7 +136,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [139, 345]
+    coordinate: [144, 649]
     rotation: 0
     state: disabled
 - name: qtgui_edit_box_msg_0_0
@@ -130,7 +145,7 @@ blocks:
     affinity: ''
     alias: ''
     comment: ''
-    gui_hint: ''
+    gui_hint: 1,0
     is_pair: 'True'
     is_static: 'True'
     key: freq
@@ -177,7 +192,7 @@ blocks:
     ctrlpanel: 'False'
     entags: 'True'
     grid: 'False'
-    gui_hint: ''
+    gui_hint: 0,0,1,2
     label1: Signal 1
     label10: Signal 10
     label2: Signal 2
@@ -240,7 +255,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [963, 268]
+    coordinate: [1017, 270]
     rotation: 0
     state: true
 

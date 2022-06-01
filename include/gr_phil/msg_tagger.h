@@ -13,6 +13,8 @@ class GR_PHIL_API msg_tagger : virtual public gr::sync_block {
 	typedef boost::shared_ptr<msg_tagger> sptr;
 
 	static sptr make(int period=100, int dtype=0);
+
+	virtual void set_period(int period) = 0;
 };
 
 } // namespace gr_phil

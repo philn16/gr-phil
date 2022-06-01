@@ -31,9 +31,11 @@ msg_tagger_impl::msg_tagger_impl(int period, int dtype) :
 	PRINT_VAR(period);
 	PRINT_VAR(dtype);
 
+	params.period = period;
+	params.dtype = (_Dtype)dtype;
+
 	message_port_register_in(pmt::mp("tag_key"));
 	set_msg_handler(pmt::mp("tag_key"),[this](const pmt::pmt_t& msg) { this->update_tag_key(msg); });
-
 }
 
 msg_tagger_impl::~msg_tagger_impl() {
@@ -94,14 +96,27 @@ void msg_tagger_impl::update_tag_key(const pmt::pmt_t& msg) {
 		if (key == freq_key)
 			this->freq = pmt::to_double(val);
 		else {
-		std::string keystr = pmt::symbol_to_string(key);
-		this->d_logger->warn(("unknown key \""+keystr+"\"").c_str());
+			std::string keystr = pmt::symbol_to_string(key);
+			this->d_logger->warn(("unknown key \""+keystr+"\"").c_str());
 		}
 
 		// advance to next item
 		list_of_items = pmt::cdr(list_of_items);
 	} while (list_of_items != pmt::PMT_NIL);
-std::cout << "\n";
+	std::cout << "\n";
+}
+
+void msg_tagger_impl::increment_sampnum(int i) {
+	samp_num++;
+	if ( samp_num < params.period )
+		return;
+	samp_num = 0;
+	char buff[20];
+	sprintf(buff,"%g",freq);
+	auto key = pmt::string_to_symbol("freq");
+	auto val = pmt::string_to_symbol(buff);
+	int output=0;
+	this->add_item_tag(0,this->nitems_written(0)+i,key,val);
 }
 
 int msg_tagger_impl::work(int noutput_items, gr_vector_const_void_star &input_items, gr_vector_void_star &output_items) {
@@ -110,16 +125,19 @@ int msg_tagger_impl::work(int noutput_items, gr_vector_const_void_star &input_it
 		case _Dtype::FLOAT: {
 			const float *in = (const float *) input_items[0];
 			float *out = (float *) output_items[0];
-			for( int i=0; i < noutput_items; i++)
+			for( int i=0; i < noutput_items; i++) {
 				out[i] = in[i];
-
+				increment_sampnum(i);
+			}
 			break;
 		}
 		case _Dtype::COMPLEX: {
 			const gr_complex *in = (const gr_complex *) input_items[0];
 			gr_complex *out = (gr_complex *) output_items[0];
-			for( int i=0; i < noutput_items; i++)
+			for( int i=0; i < noutput_items; i++) {
 				out[i] = in[i];
+				increment_sampnum(i);
+			}
 			break;
 		}
 	}

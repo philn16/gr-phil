@@ -21,15 +21,16 @@ class msg_tagger_impl : public msg_tagger {
 	int samp_num = 0;
 	double freq = 0;
 
+	void increment_sampnum(int i);
+
+	void update_tag_key(const pmt::pmt_t& msg);
   public:
 	msg_tagger_impl(int period, int dtype);
 	~msg_tagger_impl();
 
-	void set_period(int period);
+	void set_period(int period) override;
 
-	void update_tag_key(const pmt::pmt_t& msg);
-
-	int work( int noutput_items, gr_vector_const_void_star &input_items, gr_vector_void_star &output_items );
+	int work( int noutput_items, gr_vector_const_void_star &input_items, gr_vector_void_star &output_items ) override;
 };
 
 } // namespace gr_phil
