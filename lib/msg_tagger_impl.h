@@ -2,11 +2,10 @@
 
 #include <gr_phil/msg_tagger.h>
 #include <string>
+#include "shared.hpp"
 
 namespace gr {
 namespace gr_phil {
-
-enum class _Dtype {FLOAT = 0, COMPLEX = 1};
 
 class msg_tagger_impl : public msg_tagger {
   private:

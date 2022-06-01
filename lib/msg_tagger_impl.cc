@@ -5,29 +5,15 @@
 #include <gnuradio/io_signature.h>
 #include "msg_tagger_impl.h"
 
-#define PRINT_VAR(x) std::cout << #x << ": " << x << "\n"
-
 namespace gr {
 namespace gr_phil {
-
-int dtpe_size(_Dtype dtype) {
-	switch ( dtype ) {
-		case _Dtype::COMPLEX:
-			return sizeof(float);
-		case _Dtype::FLOAT:
-			return sizeof(gr_complex);
-		default:
-			std::cout << "unrecognized dtype " << (int)dtype << "\n";
-			return 0;
-	}
-}
 
 msg_tagger::sptr msg_tagger::make(int period, int dtype) {
 	return gnuradio::get_initial_sptr(new msg_tagger_impl(period, dtype));
 }
 
 msg_tagger_impl::msg_tagger_impl(int period, int dtype) :
-	gr::sync_block("msg_tagger", gr::io_signature::make(1, 1, dtpe_size((_Dtype)dtype)), gr::io_signature::make(1, 1, dtpe_size((_Dtype)dtype))) {
+	gr::sync_block("msg_tagger", gr::io_signature::make(1, 1, dtype_size((_Dtype)dtype)), gr::io_signature::make(1, 1, dtype_size((_Dtype)dtype))) {
 	PRINT_VAR(period);
 	PRINT_VAR(dtype);
 
@@ -111,10 +97,8 @@ void msg_tagger_impl::increment_sampnum(int i) {
 	if ( samp_num < params.period )
 		return;
 	samp_num = 0;
-	char buff[20];
-	sprintf(buff,"%g",freq);
 	auto key = pmt::string_to_symbol("freq");
-	auto val = pmt::string_to_symbol(buff);
+	auto val = pmt::from_double(freq);
 	int output=0;
 	this->add_item_tag(0,this->nitems_written(0)+i,key,val);
 }

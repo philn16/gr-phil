@@ -1,0 +1,32 @@
+id: gr_phil_tagger_rx
+label: tagger_rx
+category: '[gr_phil]'
+
+templates:
+  imports: import gr_phil
+  make: gr_phil.tagger_rx(${dtype.intval})
+
+parameters:
+- id: dtype
+  label: dtype
+  dtype: enum
+  options: [complex, float, int, short, byte]
+  option_attributes:
+    intval: [0,1,2,3,4]
+    offset_type: [complex, real, int, short, byte]
+  hide: part
+
+inputs:
+- label: in
+  domain: stream
+  dtype: ${ dtype.offset_type }
+  vlen: 1
+
+outputs:
+- label: out
+  domain: stream
+  dtype: ${ dtype.offset_type }
+  vlen: 1
+
+
+file_format: 1
