@@ -1,0 +1,41 @@
+id: gr_phil_msg_tagger
+label: msg_tagger
+category: '[gr_phil]'
+
+templates:
+  imports: import gr_phil
+  make: gr_phil.msg_tagger(${period}, ${dtype.intval})
+  callbacks:
+  - set_period(${period})
+
+parameters:
+- id: period
+  label: period
+  dtype: int
+  default: '100'
+- id: dtype
+  label: dtype
+  dtype: enum
+  options: [complex, float, int, short, byte]
+  option_attributes:
+    intval: [0,1,2,3,4]
+    offset_type: [complex, real, int, short, byte]
+  hide: part
+
+inputs:
+- label: in
+  domain: stream
+  dtype: ${ dtype.offset_type }
+  vlen: 1
+- label: tag_key
+  domain: message
+  id: tag_key
+  optional: true
+
+outputs:
+- label: out
+  domain: stream
+  dtype: ${ dtype.offset_type }
+  vlen: 1
+
+file_format: 1

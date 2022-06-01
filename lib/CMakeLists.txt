@@ -25,6 +25,7 @@ include(GrPlatform) #define LIB_SUFFIX
 
 list(APPEND gr_phil_sources
     mux_impl.cc
+    msg_tagger_impl.cc
 )
 
 set(gr_phil_sources "${gr_phil_sources}" PARENT_SCOPE)

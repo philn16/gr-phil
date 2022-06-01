@@ -1,6 +1,4 @@
-#ifndef INCLUDED_GR_PHIL_MUX_IMPL_H
-#define INCLUDED_GR_PHIL_MUX_IMPL_H
-
+#pragma once
 #include <gr_phil/mux.h>
 
 namespace gr {
@@ -8,7 +6,6 @@ namespace gr_phil {
 
 class mux_impl : public mux {
   private:
-	// Nothing to declare in this block.
 
 	int select;
 	int num_inputs;
@@ -29,6 +26,3 @@ class mux_impl : public mux {
 
 } // namespace gr_phil
 } // namespace gr
-
-#endif /* INCLUDED_GR_PHIL_MUX_IMPL_H */
-

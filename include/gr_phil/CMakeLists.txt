@@ -23,5 +23,6 @@
 ########################################################################
 install(FILES
     api.h
-    mux.h DESTINATION include/gr_phil
+    mux.h
+    msg_tagger.h DESTINATION include/gr_phil
 )

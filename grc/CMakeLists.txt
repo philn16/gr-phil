@@ -19,5 +19,6 @@
 # Boston, MA 02110-1301, USA.
 
 install(FILES
-    gr_phil_mux.block.yml DESTINATION share/gnuradio/grc/blocks
+    gr_phil_mux.block.yml
+    gr_phil_msg_tagger.block.yml DESTINATION share/gnuradio/grc/blocks
 )
