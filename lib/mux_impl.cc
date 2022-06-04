@@ -19,6 +19,7 @@ mux_impl::mux_impl(int select, int num_inputs, int dtype):
 	this->select = select;
 	this->num_inputs = num_inputs;
 	this->dtype = (_Dtype)dtype;
+	set_tag_propagation_policy(tag_propagation_policy_t::TPP_CUSTOM);
 }
 
 void mux_impl::set_select(int select) {
@@ -28,10 +29,16 @@ void mux_impl::set_select(int select) {
 mux_impl::~mux_impl() {}
 
 int mux_impl::work(int noutput_items, gr_vector_const_void_star &input_items, gr_vector_void_star &output_items) {
-	const void *in = input_items[this->select];
+	const void *in = input_items[select];
 	void *out = output_items[0];
 
 	memcpy(out,in,dtype_size(dtype)*noutput_items);
+
+	if ( handle_tags ) {
+		get_tags_in_range(tags, select, nitems_read(select), nitems_read(select) + noutput_items);
+		for( tag_t& tag : tags )
+			add_item_tag(0,tag);
+	}
 
 	return noutput_items;
 }

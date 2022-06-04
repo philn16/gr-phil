@@ -11,6 +11,8 @@ class mux_impl : public mux {
 	int select;
 	_Dtype dtype;
 	int num_inputs;
+	std::vector<tag_t> tags;
+	bool handle_tags = true;
 
   public:
 	mux_impl(int select, int num_inputs, int dtype);
