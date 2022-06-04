@@ -164,6 +164,7 @@ blocks:
     affinity: ''
     alias: ''
     comment: ''
+    dtype: float
     maxoutbuf: '0'
     minoutbuf: '0'
     num_inputs: '3'

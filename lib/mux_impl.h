@@ -1,5 +1,6 @@
 #pragma once
 #include <gr_phil/mux.h>
+#include "shared.hpp"
 
 namespace gr {
 namespace gr_phil {
@@ -8,10 +9,11 @@ class mux_impl : public mux {
   private:
 
 	int select;
+	_Dtype dtype;
 	int num_inputs;
 
   public:
-	mux_impl(int select, int num_inputs);
+	mux_impl(int select, int num_inputs, int dtype);
 	~mux_impl();
 
 	void set_select(int select);

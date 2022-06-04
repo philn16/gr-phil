@@ -4,15 +4,10 @@ category: '[gr_phil]'
 
 templates:
   imports: import gr_phil
-  make: gr_phil.mux(${select},${num_inputs})
+  make: gr_phil.mux(${select},${num_inputs},${dtype.intval})
   callbacks:
   - set_select(${select})
 
-#  Make one 'parameters' list entry for every parameter you want settable from the GUI.
-#     Keys include:
-#     * id (makes the value accessible as \$keyname, e.g. in the make entry)
-#     * label (label shown in the GUI)
-#     * dtype (e.g. int, float, complex, byte, short, xxx_vector, ...)
 parameters:
 - id: select
   label: select
@@ -22,28 +17,30 @@ parameters:
   dtype: int
   default: '2'
   hide: part
+- id: dtype
+  label: dtype
+  dtype: enum
+  options: [complex, float, int, short, byte]
+  option_attributes:
+    intval: [0,1,2,3,4]
+    offset_type: [complex, real, int, short, byte]
+  hide: part
 
-#  Make one 'inputs' list entry per input and one 'outputs' list entry per output.
-#  Keys include:
-#      * label (an identifier for the GUI)
-#      * domain (optional - stream or message. Default is stream)
-#      * dtype (e.g. int, float, complex, byte, short, xxx_vector, ...)
-#      * vlen (optional - data stream vector length. Default is 1)
-#      * optional (optional - set to 1 for optional inputs. Default is 0)
 inputs:
-- label: in0
+- label: in
   domain: stream
-  dtype: float
+  dtype: ${ dtype.offset_type }
   vlen: 1
   multiplicity: ${ num_inputs }
 
 outputs:
-- label: out0
+- label: out
   domain: stream
-  dtype: float
+  dtype: ${ dtype.offset_type }
   vlen: 1
 
-
-#  'file_format' specifies the version of the GRC yml format used in the file
-#  and should usually not be changed.
 file_format: 1
+
+documentation: |-
+  Multiplexer:
+    select: choose the stream. indexing starts at 0
