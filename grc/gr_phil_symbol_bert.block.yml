@@ -15,7 +15,7 @@ parameters:
     intval: [8,12]
 - id: constellation
   label: constellation
-  dtype: raw
+  dtype: complex_vector
   default: (1, 1j, -1, -1j)
 
 inputs:
