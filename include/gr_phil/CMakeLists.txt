@@ -25,5 +25,6 @@ install(FILES
     api.h
     mux.h
     msg_tagger.h
-    tagger_rx.h DESTINATION include/gr_phil
+    tagger_rx.h
+    symbol_bert.h DESTINATION include/gr_phil
 )

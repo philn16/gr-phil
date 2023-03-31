@@ -1,0 +1,27 @@
+id: gr_phil_symbol_bert
+label: symbol_bert
+category: '[gr_phil]'
+
+templates:
+  imports: import gr_phil
+  make: gr_phil.symbol_bert(${nbits_prbs.intval},{constellation})
+
+parameters:
+- id: nbits_prbs
+  label: nbits_prbs
+  dtype: enum
+  options: [8, 12]
+  option_attributes:
+    intval: [8,12]
+- id: constellation
+  label: constellation
+  dtype: raw
+  default: (1, 1j, -1, -1j)
+
+inputs:
+- label: in
+  domain: stream
+  dtype: complex
+  vlen: 1
+
+file_format: 1

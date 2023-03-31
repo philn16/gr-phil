@@ -28,6 +28,7 @@ list(APPEND gr_phil_sources
     msg_tagger_impl.cc
     tagger_rx_impl.cc
     shared.cpp
+    symbol_bert_impl.cc
 )
 
 set(gr_phil_sources "${gr_phil_sources}" PARENT_SCOPE)
