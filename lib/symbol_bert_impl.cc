@@ -7,8 +7,8 @@ using std::endl;
 namespace gr {
 namespace gr_phil {
 
-symbol_bert::sptr symbol_bert::make(int nbits_prbs, const std::vector<gr_complex>& constellation) {
-	return gnuradio::get_initial_sptr(new symbol_bert_impl(nbits_prbs,constellation));
+symbol_bert::sptr symbol_bert::make(int nbits_prbs, const std::vector<gr_complex>& constellation, int print_samp_interval) {
+	return gnuradio::get_initial_sptr(new symbol_bert_impl(nbits_prbs,constellation,print_samp_interval));
 }
 
 static int log2(int n) {
@@ -20,7 +20,7 @@ static int log2(int n) {
 	return _log2;
 }
 
-symbol_bert_impl::symbol_bert_impl(int nbits_prbs, const std::vector<gr_complex>& constellation)
+symbol_bert_impl::symbol_bert_impl(int nbits_prbs, const std::vector<gr_complex>& constellation, int print_samp_interval)
 	: gr::sync_block("symbol_bert", gr::io_signature::make(1,1, sizeof(gr_complex)), gr::io_signature::make(0,0,sizeof(gr_complex))) {
 
 	cout << "nbits_prbs:\n\t" << nbits_prbs << "\n";
@@ -29,7 +29,7 @@ symbol_bert_impl::symbol_bert_impl(int nbits_prbs, const std::vector<gr_complex>
 		cout << "\t"<<v<<"\n";
 
 	sync.init(nbits_prbs,log2(constellation.size()),constellation);
-
+	this->print_samp_interval=print_samp_interval;
 }
 
 symbol_bert_impl::~symbol_bert_impl() {
@@ -39,7 +39,36 @@ int symbol_bert_impl::work(int noutput_items, gr_vector_const_void_star &input_i
 	const gr_complex *in = (const gr_complex*) input_items[0];
 	gr_complex *out = (gr_complex *) output_items[0];
 
+	std::vector<gr_complex> in_v(in,in+noutput_items);
 
+	Symbol_Sync::Work_Return ret = sync.work(in_v);
+
+	for( bool error : ret.error ) {
+		total_samp_count++;
+		for( Error_Capture_Interval &v : error_capture_intervals) {
+			v.current_count++;
+			if ( error )
+				v.current_error_count++;
+			// reset the counter and set the last error count once our count has reached the particular counting interval
+			if ( v.current_count == v.interval ) {
+				v.last_error_count = v.current_error_count;
+				v.current_count=0;
+				v.current_error_count=0;
+			}
+		}
+		// TODO: send messge with error counts
+		if ( ++print_interval_tracker >= print_samp_interval ) {
+			cout << "\n";
+			cout << "["<<total_samp_count<<"]"<<"\n";
+			for( Error_Capture_Interval &v : error_capture_intervals) {
+				// if ( v.last_error_count > 0 ) {
+				cout << v.last_error_count << "/" << v.interval << "\n";
+				// }
+			}
+			cout << "\n";
+			print_interval_tracker=0;
+		}
+	}
 	return noutput_items;
 }
 

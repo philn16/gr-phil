@@ -4,7 +4,7 @@ category: '[gr_phil]'
 
 templates:
   imports: import gr_phil
-  make: gr_phil.symbol_bert(${nbits_prbs.intval},${constellation})
+  make: gr_phil.symbol_bert(${nbits_prbs.intval},${constellation},${print_samp_interval})
 
 parameters:
 - id: nbits_prbs
@@ -17,6 +17,10 @@ parameters:
   label: constellation
   dtype: complex_vector
   default: (1, 1j, -1, -1j)
+- id: print_samp_interval
+  label: print_samp_interval
+  dtype: int
+  default: int(1e4)
 
 inputs:
 - label: in
