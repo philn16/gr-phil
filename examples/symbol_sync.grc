@@ -195,7 +195,7 @@ blocks:
   id: variable
   parameters:
     comment: ''
-    value: firdes.root_raised_cosine(1, 1, 1.0/float(sps), eb, 100)
+    value: np.array(firdes.root_raised_cosine(1, 1, 1.0/float(sps), eb, 200))
   states:
     bus_sink: false
     bus_source: false
@@ -207,7 +207,8 @@ blocks:
   id: variable
   parameters:
     comment: ''
-    value: firdes.root_raised_cosine(nfilts, nfilts, 1.0/float(sps), eb, 100*nfilts)
+    value: np.array(firdes.root_raised_cosine(nfilts, nfilts, 1.0/float(sps), eb,
+      200*nfilts))
   states:
     bus_sink: false
     bus_source: false
@@ -264,7 +265,7 @@ blocks:
     bus_structure: null
     coordinate: [456, 572.0]
     rotation: 0
-    state: true
+    state: enabled
 - name: analog_noise_source_x_0
   id: analog_noise_source_x
   parameters:
@@ -358,7 +359,7 @@ blocks:
     bus_structure: null
     coordinate: [672, 528.0]
     rotation: 0
-    state: true
+    state: enabled
 - name: blocks_message_debug_0
   id: blocks_message_debug
   parameters:
@@ -465,7 +466,7 @@ blocks:
     bus_structure: null
     coordinate: [432, 492.0]
     rotation: 0
-    state: true
+    state: enabled
 - name: digital_costas_loop_cc_0_0
   id: digital_costas_loop_cc
   parameters:
@@ -583,7 +584,7 @@ blocks:
     maxoutbuf: '0'
     minoutbuf: '0'
     samp_delay: '0'
-    taps: rrc_taps_mod
+    taps: rrc_taps_mod*(2**0.5)
     type: ccc
   states:
     bus_sink: false
@@ -591,7 +592,7 @@ blocks:
     bus_structure: null
     coordinate: [832, 532.0]
     rotation: 0
-    state: true
+    state: enabled
 - name: mmse_resampler_xx_0
   id: mmse_resampler_xx
   parameters:
@@ -745,7 +746,7 @@ blocks:
     color9: '"red"'
     comment: ''
     grid: 'True'
-    gui_hint: 4,0,20,1
+    gui_hint: 5,0,20,1
     label1: Before Carrier Sync
     label10: ''
     label2: After Carrier Sync
@@ -843,7 +844,7 @@ blocks:
     fftsize: '1024'
     freqhalf: 'True'
     grid: 'False'
-    gui_hint: 4,0,20,1
+    gui_hint: 5,0,20,1
     label: Relative Gain
     label1: ''
     label10: ''''''
