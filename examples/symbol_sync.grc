@@ -50,6 +50,27 @@ blocks:
     coordinate: [245, 11]
     rotation: 0
     state: enabled
+- name: awgn_amp
+  id: variable_qtgui_range
+  parameters:
+    comment: ''
+    gui_hint: 3,0
+    label: ''
+    min_len: '200'
+    orient: Qt.Horizontal
+    rangeType: float
+    start: '0'
+    step: 1e-3
+    stop: '3'
+    value: '0'
+    widget: counter_slider
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1200, 36.0]
+    rotation: 0
+    state: true
 - name: constellation
   id: variable
   parameters:
@@ -78,7 +99,7 @@ blocks:
   id: variable_qtgui_range
   parameters:
     comment: ''
-    gui_hint: 3,0
+    gui_hint: 4,0
     label: freq_loop_bw
     min_len: '200'
     orient: Qt.Horizontal
@@ -92,7 +113,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1235, 36]
+    coordinate: [1392, 28.0]
     rotation: 0
     state: true
 - name: freq_offset
@@ -244,6 +265,25 @@ blocks:
     coordinate: [456, 572.0]
     rotation: 0
     state: true
+- name: analog_noise_source_x_0
+  id: analog_noise_source_x
+  parameters:
+    affinity: ''
+    alias: ''
+    amp: awgn_amp
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    noise_type: analog.GR_GAUSSIAN
+    seed: '0'
+    type: complex
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1064, 636.0]
+    rotation: 0
+    state: true
 - name: analog_sig_source_x_0
   id: analog_sig_source_x
   parameters:
@@ -282,6 +322,24 @@ blocks:
     coordinate: [560, 396.0]
     rotation: 0
     state: disabled
+- name: blocks_add_xx_0
+  id: blocks_add_xx
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    num_inputs: '2'
+    type: complex
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1304, 480.0]
+    rotation: 0
+    state: true
 - name: blocks_interleave_0
   id: blocks_interleave
   parameters:
@@ -299,6 +357,19 @@ blocks:
     bus_source: false
     bus_structure: null
     coordinate: [672, 528.0]
+    rotation: 0
+    state: true
+- name: blocks_message_debug_0
+  id: blocks_message_debug
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1744, 240.0]
     rotation: 0
     state: true
 - name: blocks_multiply_const_vxx_0
@@ -337,6 +408,25 @@ blocks:
     coordinate: [1208, 320.0]
     rotation: 0
     state: enabled
+- name: blocks_probe_rate_0
+  id: blocks_probe_rate
+  parameters:
+    affinity: ''
+    alias: ''
+    alpha: '0.15'
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    mintime: '500.0'
+    type: complex
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1632, 148.0]
+    rotation: 0
+    state: true
 - name: blocks_throttle_0
   id: blocks_throttle
   parameters:
@@ -346,7 +436,7 @@ blocks:
     ignoretag: 'True'
     maxoutbuf: '0'
     minoutbuf: '0'
-    samples_per_second: 2e5
+    samples_per_second: 1e6
     type: complex
     vlen: '1'
   states:
@@ -449,14 +539,14 @@ blocks:
     comment: ''
     constellation: constellation
     nbits_prbs: '8'
-    print_samp_interval: int(1e3)
+    print_samp_interval: int(1e4)
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
     coordinate: [1512, 1044.0]
     rotation: 0
-    state: disabled
+    state: enabled
 - name: import_0
   id: import
   parameters:
@@ -517,7 +607,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1408, 336.0]
+    coordinate: [1472, 352.0]
     rotation: 0
     state: true
 - name: note_0
@@ -563,7 +653,7 @@ blocks:
     color9: '"red"'
     comment: ''
     grid: 'True'
-    gui_hint: 4,0,20,1
+    gui_hint: 5,0,20,1
     label1: Before Carrier Sync
     label10: ''
     label2: After Carrier Sync
@@ -802,13 +892,16 @@ blocks:
 connections:
 - [QPSK_Mod, '0', blocks_multiply_xx_0, '1']
 - [analog_const_source_x_0, '0', blocks_interleave_0, '1']
+- [analog_noise_source_x_0, '0', blocks_add_xx_0, '1']
 - [analog_sig_source_x_0, '0', blocks_multiply_xx_0, '0']
 - [bit_to_byte, '0', QPSK_Mod, '0']
+- [blocks_add_xx_0, '0', mmse_resampler_xx_0, '0']
 - [blocks_interleave_0, '0', interp_fir_filter_xxx_0, '0']
 - [blocks_multiply_const_vxx_0, '0', digital_symbol_sync_xx_0_0, '0']
 - [blocks_multiply_const_vxx_0, '0', qtgui_const_sink_x_0_1_0, '0']
 - [blocks_multiply_const_vxx_0, '0', qtgui_freq_sink_x_0, '0']
-- [blocks_multiply_xx_0, '0', mmse_resampler_xx_0, '0']
+- [blocks_multiply_xx_0, '0', blocks_add_xx_0, '0']
+- [blocks_probe_rate_0, rate, blocks_message_debug_0, print]
 - [blocks_throttle_0, '0', gr_phil_symbol_bert_0, '0']
 - [blocks_throttle_0, '0', qtgui_const_sink_x_0_1, '0']
 - [blocks_vector_source_x_0, '0', blocks_interleave_0, '0']
@@ -817,6 +910,7 @@ connections:
 - [digital_symbol_sync_xx_0_0, '0', digital_costas_loop_cc_0_0, '0']
 - [interp_fir_filter_xxx_0, '0', blocks_multiply_xx_0, '1']
 - [mmse_resampler_xx_0, '0', blocks_multiply_const_vxx_0, '0']
+- [mmse_resampler_xx_0, '0', blocks_probe_rate_0, '0']
 
 metadata:
   file_format: 1

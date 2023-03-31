@@ -30,6 +30,8 @@ symbol_bert_impl::symbol_bert_impl(int nbits_prbs, const std::vector<gr_complex>
 
 	sync.init(nbits_prbs,log2(constellation.size()),constellation);
 	this->print_samp_interval=print_samp_interval;
+
+	// cout << "\33[1m\33[36m" << __FUNCTION__ << "\n" << __DATE__ << " " << __TIME__ << "\33[0m" << "\n\n";
 }
 
 symbol_bert_impl::~symbol_bert_impl() {
