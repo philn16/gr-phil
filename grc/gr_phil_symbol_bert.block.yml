@@ -4,7 +4,7 @@ category: '[gr_phil]'
 
 templates:
   imports: import gr_phil
-  make: gr_phil.symbol_bert(${nbits_prbs.intval},{constellation})
+  make: gr_phil.symbol_bert(${nbits_prbs.intval},${constellation})
 
 parameters:
 - id: nbits_prbs
