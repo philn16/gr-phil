@@ -19,7 +19,7 @@ if(NOT gr_phil_sources)
 endif(NOT gr_phil_sources)
 
 add_library(gnuradio-gr_phil SHARED ${gr_phil_sources})
-target_link_libraries(gnuradio-gr_phil gnuradio::gnuradio-runtime)
+target_link_libraries(gnuradio-gr_phil gnuradio::gnuradio-runtime pyphil)
 target_include_directories(gnuradio-gr_phil
     PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/../include>
     PUBLIC $<INSTALL_INTERFACE:include>
