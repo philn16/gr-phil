@@ -59,7 +59,7 @@ int symbol_bert_impl::work(int noutput_items, gr_vector_const_void_star &input_i
 			}
 		}
 		// TODO: send messge with error counts
-		if ( ++print_interval_tracker >= print_samp_interval ) {
+		if ( ++print_interval_tracker >= print_samp_interval && print_samp_interval > 0) {
 			cout << "\n";
 			cout << "["<<total_samp_count<<"]"<<"\n";
 			for( Error_Capture_Interval &v : error_capture_intervals) {

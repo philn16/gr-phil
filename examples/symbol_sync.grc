@@ -540,7 +540,7 @@ blocks:
     comment: ''
     constellation: constellation
     nbits_prbs: '8'
-    print_samp_interval: int(1e4)
+    print_samp_interval: int(1e4)*0
   states:
     bus_sink: false
     bus_source: false
