@@ -54,7 +54,7 @@ blocks:
   id: variable_qtgui_range
   parameters:
     comment: ''
-    gui_hint: 'tab0@0: 3,0'
+    gui_hint: 'tab0@0: 1,0'
     label: ''
     min_len: '200'
     orient: Qt.Horizontal
@@ -68,7 +68,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1152, 36.0]
+    coordinate: [1032, 20.0]
     rotation: 0
     state: true
 - name: constellation
@@ -95,11 +95,32 @@ blocks:
     coordinate: [224, 108.0]
     rotation: 0
     state: enabled
+- name: freq_hetrodyne
+  id: variable_qtgui_range
+  parameters:
+    comment: ''
+    gui_hint: 'tab0@0: 2,0'
+    label: freq_hetrodyne
+    min_len: '200'
+    orient: Qt.Horizontal
+    rangeType: float
+    start: '-0.5'
+    step: 1e-3
+    stop: '0.5'
+    value: '0.2'
+    widget: counter_slider
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1184, 20.0]
+    rotation: 0
+    state: true
 - name: freq_loop_bw
   id: variable_qtgui_range
   parameters:
     comment: ''
-    gui_hint: 'tab0@0: 4,0'
+    gui_hint: 'tab0@0: 3,0'
     label: freq_loop_bw
     min_len: '200'
     orient: Qt.Horizontal
@@ -113,49 +134,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1280, 28.0]
-    rotation: 0
-    state: true
-- name: freq_offset
-  id: variable_qtgui_range
-  parameters:
-    comment: ''
-    gui_hint: 'tab0@0: 2,0'
-    label: freq_offset
-    min_len: '200'
-    orient: Qt.Horizontal
-    rangeType: float
-    start: '-0.5'
-    step: 1e-3
-    stop: '0.5'
-    value: '0'
-    widget: counter_slider
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [1024, 28.0]
-    rotation: 0
-    state: true
-- name: multiply
-  id: variable_qtgui_range
-  parameters:
-    comment: ''
-    gui_hint: 'tab0@0: 0,0'
-    label: multiply
-    min_len: '200'
-    orient: Qt.Horizontal
-    rangeType: float
-    start: '0.01'
-    step: 1e-3
-    stop: '4'
-    value: '2.5'
-    widget: counter_slider
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [724, 37]
+    coordinate: [1424, 20.0]
     rotation: 0
     state: true
 - name: nfilts
@@ -168,27 +147,6 @@ blocks:
     bus_source: false
     bus_structure: null
     coordinate: [29, 110]
-    rotation: 0
-    state: true
-- name: resamp_rate
-  id: variable_qtgui_range
-  parameters:
-    comment: ''
-    gui_hint: 'tab0@0: 1,0'
-    label: resamp_rate
-    min_len: '200'
-    orient: Qt.Horizontal
-    rangeType: float
-    start: 1-0.1
-    step: 1e-3
-    stop: 1+0.1
-    value: '1'
-    widget: counter_slider
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [880, 28.0]
     rotation: 0
     state: true
 - name: rrc_taps_mod
@@ -228,7 +186,7 @@ blocks:
     start: '0'
     step: 1e-1
     stop: '2000'
-    value: '1000'
+    value: '1501'
     widget: counter_slider
   states:
     bus_sink: false
@@ -258,6 +216,27 @@ blocks:
     coordinate: [1032, 196.0]
     rotation: 0
     state: true
+- name: rx_gain_digital
+  id: variable_qtgui_range
+  parameters:
+    comment: ''
+    gui_hint: 'tab0@0: 0,0'
+    label: rx_gain_digital
+    min_len: '200'
+    orient: Qt.Horizontal
+    rangeType: float
+    start: '0.01'
+    step: 1e-3
+    stop: '4'
+    value: '1'
+    widget: counter_slider
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [720, 20.0]
+    rotation: 0
+    state: true
 - name: samp_rate
   id: variable
   parameters:
@@ -270,6 +249,27 @@ blocks:
     coordinate: [272, 172.0]
     rotation: 0
     state: enabled
+- name: timing_loop_bw
+  id: variable_qtgui_range
+  parameters:
+    comment: ''
+    gui_hint: 'tab0@0: 3,1'
+    label: timing_loop_bw
+    min_len: '200'
+    orient: Qt.Horizontal
+    rangeType: float
+    start: 1e-3
+    step: 1e-3
+    stop: '0.1'
+    value: '0.01'
+    widget: counter_slider
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1568, 20.0]
+    rotation: 0
+    state: true
 - name: tx_freq_mhz
   id: variable_qtgui_range
   parameters:
@@ -282,7 +282,7 @@ blocks:
     start: '0'
     step: 1e-2
     stop: '2000'
-    value: '1000'
+    value: '1501'
     widget: counter_slider
   states:
     bus_sink: false
@@ -309,7 +309,28 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [712, 196.0]
+    coordinate: [744, 196.0]
+    rotation: 0
+    state: true
+- name: tx_gain_digital
+  id: variable_qtgui_range
+  parameters:
+    comment: ''
+    gui_hint: 'tab0@0: 0,1'
+    label: rx_gain_digital
+    min_len: '200'
+    orient: Qt.Horizontal
+    rangeType: float
+    start: '0.01'
+    step: 1e-3
+    stop: '4'
+    value: '1'
+    widget: counter_slider
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [872, 12.0]
     rotation: 0
     state: true
 - name: analog_const_source_x_0
@@ -345,7 +366,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [592, 772.0]
+    coordinate: [752, 676.0]
     rotation: 0
     state: true
 - name: analog_sig_source_x_0
@@ -355,7 +376,7 @@ blocks:
     alias: ''
     amp: '1'
     comment: ''
-    freq: freq_offset
+    freq: freq_hetrodyne
     maxoutbuf: '0'
     minoutbuf: '0'
     offset: '0'
@@ -377,7 +398,7 @@ blocks:
     alias: ''
     amp: '1'
     comment: ''
-    freq: -freq_offset
+    freq: -freq_hetrodyne
     maxoutbuf: '0'
     minoutbuf: '0'
     offset: '0'
@@ -407,7 +428,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [880, 712.0]
+    coordinate: [1008, 608.0]
     rotation: 0
     state: true
 - name: blocks_message_debug_0
@@ -429,7 +450,7 @@ blocks:
     affinity: ''
     alias: ''
     comment: ''
-    const: multiply
+    const: rx_gain_digital
     maxoutbuf: '0'
     minoutbuf: '0'
     type: complex
@@ -439,6 +460,24 @@ blocks:
     bus_source: false
     bus_structure: null
     coordinate: [568, 1164.0]
+    rotation: 0
+    state: true
+- name: blocks_multiply_const_vxx_0_0
+  id: blocks_multiply_const_vxx
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    const: tx_gain_digital
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    type: complex
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1144, 620.0]
     rotation: 0
     state: true
 - name: blocks_multiply_xx_0
@@ -544,12 +583,12 @@ blocks:
     minoutbuf: '0'
     order: '4'
     use_snr: 'False'
-    w: freq_loop_bw
+    w: 0.01 if freq_loop_bw == 0 else freq_loop_bw
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1256, 1024.0]
+    coordinate: [1240, 920.0]
     rotation: 0
     state: enabled
 - name: digital_symbol_sync_xx_0_0
@@ -560,7 +599,7 @@ blocks:
     comment: ''
     constellation: digital.constellation_bpsk().base()
     damping: 1/2**(1/2)
-    loop_bw: '.01'
+    loop_bw: timing_loop_bw
     max_dev: '1.5'
     maxoutbuf: '0'
     minoutbuf: '0'
@@ -579,6 +618,24 @@ blocks:
     coordinate: [832, 1036.0]
     rotation: 0
     state: enabled
+- name: gr_phil_mux_0
+  id: gr_phil_mux
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    dtype: complex
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    num_inputs: '2'
+    select: 1 if freq_loop_bw==0 else 0
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1512, 1048.0]
+    rotation: 0
+    state: true
 - name: gr_phil_symbol_bert_0
   id: gr_phil_symbol_bert
   parameters:
@@ -592,7 +649,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1512, 1036.0]
+    coordinate: [1664, 1100.0]
     rotation: 0
     state: enabled
 - name: import_0
@@ -631,7 +688,7 @@ blocks:
     maxoutbuf: '0'
     minoutbuf: '0'
     samp_delay: '0'
-    taps: rrc_taps_mod*(2**0.5)
+    taps: rrc_taps_mod*(1/np.max(np.abs(rrc_taps_mod)))*0.5
     type: ccc
   states:
     bus_sink: false
@@ -640,24 +697,6 @@ blocks:
     coordinate: [536, 612.0]
     rotation: 0
     state: enabled
-- name: mmse_resampler_xx_0
-  id: mmse_resampler_xx
-  parameters:
-    affinity: ''
-    alias: ''
-    comment: ''
-    maxoutbuf: '0'
-    minoutbuf: '0'
-    phase_shift: '0'
-    resamp_ratio: resamp_rate
-    type: complex
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [1056, 584.0]
-    rotation: 0
-    state: true
 - name: note_1
   id: note
   parameters:
@@ -773,7 +812,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1512, 964.0]
+    coordinate: [1656, 980.0]
     rotation: 0
     state: enabled
 - name: qtgui_sink_x_0
@@ -805,6 +844,35 @@ blocks:
     coordinate: [800, 1244.0]
     rotation: 0
     state: true
+- name: qtgui_sink_x_0_0
+  id: qtgui_sink_x
+  parameters:
+    affinity: ''
+    alias: ''
+    bw: samp_rate
+    comment: ''
+    fc: '0'
+    fftsize: 2**12
+    gui_hint: 'tab1@2: 0,0,20,1'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    name: '""'
+    plotconst: 'True'
+    plotfreq: 'True'
+    plottime: 'True'
+    plotwaterfall: 'True'
+    rate: '10'
+    showports: 'False'
+    showrf: 'False'
+    type: complex
+    wintype: firdes.WIN_BLACKMAN_hARRIS
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1368, 516.0]
+    rotation: 0
+    state: true
 - name: sps
   id: parameter
   parameters:
@@ -814,7 +882,7 @@ blocks:
     label: sps
     short_id: s
     type: intx
-    value: '4'
+    value: '8'
   states:
     bus_sink: false
     bus_source: false
@@ -863,7 +931,7 @@ blocks:
     comment: ''
     gui_hint: 1,0,9,1
     label0: Constellation (Symbols)
-    label1: Gui Sink
+    label1: Gui Sink Rx
     label10: Tab 10
     label11: Tab 11
     label12: Tab 12
@@ -874,7 +942,7 @@ blocks:
     label17: Tab 17
     label18: Tab 18
     label19: Tab 19
-    label2: Tab 2
+    label2: Gui Sink Tx
     label3: Tab 3
     label4: Tab 4
     label5: Tab 5
@@ -882,7 +950,7 @@ blocks:
     label7: Tab 7
     label8: Tab 8
     label9: Tab 9
-    num_tabs: '2'
+    num_tabs: '3'
   states:
     bus_sink: false
     bus_source: false
@@ -1543,19 +1611,22 @@ connections:
 - [analog_noise_source_x_0, '0', blocks_add_xx_0, '1']
 - [analog_sig_source_x_0, '0', blocks_multiply_xx_0, '0']
 - [analog_sig_source_x_0_0, '0', blocks_multiply_xx_0_0, '1']
-- [blocks_add_xx_0, '0', mmse_resampler_xx_0, '0']
+- [blocks_add_xx_0, '0', blocks_multiply_const_vxx_0_0, '0']
 - [blocks_multiply_const_vxx_0, '0', digital_symbol_sync_xx_0_0, '0']
 - [blocks_multiply_const_vxx_0, '0', qtgui_sink_x_0, '0']
+- [blocks_multiply_const_vxx_0_0, '0', qtgui_sink_x_0_0, '0']
+- [blocks_multiply_const_vxx_0_0, '0', uhd_usrp_sink_0, '0']
 - [blocks_multiply_xx_0, '0', blocks_add_xx_0, '0']
 - [blocks_multiply_xx_0_0, '0', blocks_multiply_const_vxx_0, '0']
 - [blocks_patterned_interleaver_0, '0', interp_fir_filter_xxx_0, '0']
 - [blocks_probe_rate_0, rate, blocks_message_debug_0, print]
 - [blocks_vector_source_x_0, '0', blocks_patterned_interleaver_0, '0']
-- [digital_costas_loop_cc_0_0, '0', gr_phil_symbol_bert_0, '0']
-- [digital_costas_loop_cc_0_0, '0', qtgui_const_sink_x_0_1, '0']
+- [digital_costas_loop_cc_0_0, '0', gr_phil_mux_0, '0']
 - [digital_symbol_sync_xx_0_0, '0', digital_costas_loop_cc_0_0, '0']
+- [digital_symbol_sync_xx_0_0, '0', gr_phil_mux_0, '1']
+- [gr_phil_mux_0, '0', gr_phil_symbol_bert_0, '0']
+- [gr_phil_mux_0, '0', qtgui_const_sink_x_0_1, '0']
 - [interp_fir_filter_xxx_0, '0', blocks_multiply_xx_0, '1']
-- [mmse_resampler_xx_0, '0', uhd_usrp_sink_0, '0']
 - [uhd_usrp_source_0, '0', blocks_multiply_xx_0_0, '0']
 - [uhd_usrp_source_0, '0', blocks_probe_rate_0, '0']
 
