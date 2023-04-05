@@ -216,18 +216,6 @@ blocks:
     coordinate: [48, 316.0]
     rotation: 0
     state: enabled
-- name: sps
-  id: variable
-  parameters:
-    comment: ''
-    value: '2'
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [134, 113]
-    rotation: 0
-    state: enabled
 - name: QPSK_Mod
   id: digital_constellation_modulator
   parameters:
@@ -888,6 +876,23 @@ blocks:
     coordinate: [1808, 848.0]
     rotation: 0
     state: disabled
+- name: sps
+  id: parameter
+  parameters:
+    alias: ''
+    comment: ''
+    hide: none
+    label: sps
+    short_id: s
+    type: intx
+    value: '2'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [112, 116.0]
+    rotation: 0
+    state: true
 
 connections:
 - [QPSK_Mod, '0', blocks_multiply_xx_0, '1']
