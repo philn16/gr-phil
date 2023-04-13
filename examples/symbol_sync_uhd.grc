@@ -303,7 +303,7 @@ blocks:
     start: '0'
     step: '.1'
     stop: '60'
-    value: '40'
+    value: '30'
     widget: counter_slider
   states:
     bus_sink: false
@@ -697,6 +697,20 @@ blocks:
     coordinate: [536, 612.0]
     rotation: 0
     state: enabled
+- name: note_0
+  id: note
+  parameters:
+    alias: ''
+    comment: ''
+    note: A Tx Gain of 30 puts out -15 dbm at full scale, the largest safe value in
+      loopback mode
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [736, 388.0]
+    rotation: 0
+    state: true
 - name: note_1
   id: note
   parameters:
