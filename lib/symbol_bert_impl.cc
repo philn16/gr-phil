@@ -8,8 +8,8 @@ using std::endl;
 namespace gr {
 namespace gr_phil {
 
-symbol_bert::sptr symbol_bert::make(int nbits_prbs, const std::vector<gr_complex>& constellation, int print_samp_interval) {
-	return gnuradio::get_initial_sptr(new symbol_bert_impl(nbits_prbs,constellation,print_samp_interval));
+symbol_bert::sptr symbol_bert::make(int nbits_prbs, const std::vector<gr_complex>& constellation, int print_samp_interval, const std::vector<gr_complex>& sequence) {
+	return gnuradio::get_initial_sptr(new symbol_bert_impl(nbits_prbs,constellation,print_samp_interval,sequence));
 }
 
 static int log2(int n) {
@@ -21,7 +21,7 @@ static int log2(int n) {
 	return _log2;
 }
 
-symbol_bert_impl::symbol_bert_impl(int nbits_prbs, const std::vector<gr_complex>& constellation, int print_samp_interval)
+symbol_bert_impl::symbol_bert_impl(int nbits_prbs, const std::vector<gr_complex>& constellation, int print_samp_interval, const std::vector<gr_complex>& sequence)
 	: gr::sync_block("symbol_bert", gr::io_signature::make(1,1, sizeof(gr_complex)), gr::io_signature::make(1,1,sizeof(gr_complex))) {
 
 	cout << "nbits_prbs:\n\t" << nbits_prbs << "\n";

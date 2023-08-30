@@ -101,7 +101,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [32, 630]
+    coordinate: [30, 699]
     rotation: 0
     state: true
 - name: eb
@@ -113,7 +113,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [38, 793]
+    coordinate: [36, 862]
     rotation: 0
     state: enabled
 - name: freq_loop_bw
@@ -167,7 +167,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [34, 711]
+    coordinate: [32, 780]
     rotation: 0
     state: true
 - name: phase
@@ -221,7 +221,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [31, 550]
+    coordinate: [29, 619]
     rotation: 0
     state: enabled
 - name: rrc_taps_nfilts
@@ -234,9 +234,21 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [31, 469]
+    coordinate: [29, 538]
     rotation: 0
     state: enabled
+- name: sequence
+  id: variable
+  parameters:
+    comment: ''
+    value: constellation[get_seq(8,2)]
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [38, 945]
+    rotation: 0
+    state: true
 - name: QPSK_Mod
   id: digital_constellation_modulator
   parameters:
@@ -417,7 +429,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1240, 980]
+    coordinate: [1437, 1013]
     rotation: 0
     state: enabled
 - name: blocks_vector_source_x_0
@@ -431,7 +443,7 @@ blocks:
     repeat: 'True'
     tags: '[]'
     type: complex
-    vector: periodic_modulate(constellation[get_seq(8,2)],sps,rrc_taps_mod)
+    vector: periodic_modulate(sequence,sps,rrc_taps_mod)
     vlen: '1'
   states:
     bus_sink: false
@@ -455,7 +467,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [911, 974]
+    coordinate: [1108, 1007]
     rotation: 0
     state: enabled
 - name: digital_glfsr_source_x_0
@@ -502,7 +514,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [280, 972]
+    coordinate: [477, 1005]
     rotation: 0
     state: enabled
 - name: gr_phil_symbol_bert_0
@@ -516,11 +528,12 @@ blocks:
     minoutbuf: '0'
     nbits_prbs: '8'
     print_samp_interval: int(1e5)
+    sequence: sequence
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1513, 1067]
+    coordinate: [1710, 1100]
     rotation: 0
     state: enabled
 - name: import_0
@@ -533,7 +546,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [35, 333]
+    coordinate: [33, 402]
     rotation: 0
     state: true
 - name: import_1
@@ -546,7 +559,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [36, 270]
+    coordinate: [34, 339]
     rotation: 0
     state: true
 - name: import_2
@@ -559,7 +572,22 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [30, 399]
+    coordinate: [28, 468]
+    rotation: 0
+    state: true
+- name: import_3
+  id: import
+  parameters:
+    alias: ''
+    comment: ''
+    imports: 'from gnuradio.filter import firdes
+
+      '
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [39, 274]
     rotation: 0
     state: true
 - name: note_0
@@ -573,7 +601,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [920, 1124.0]
+    coordinate: [1117, 1157]
     rotation: 0
     state: enabled
 - name: qtgui_const_sink_x_0_1
@@ -665,7 +693,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1871, 999]
+    coordinate: [2068, 1032]
     rotation: 0
     state: enabled
 - name: qtgui_const_sink_x_0_1_0
