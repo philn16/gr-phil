@@ -36,7 +36,7 @@ class symbol_bert_impl : public symbol_bert {
 	std::vector<Error_Capture_Interval> error_capture_intervals = {Error_Capture_Interval(1e3),Error_Capture_Interval(1e4),Error_Capture_Interval(1e5),Error_Capture_Interval(1e6),Error_Capture_Interval(1e7) };
 
   public:
-	symbol_bert_impl(int nbits_prbs, const std::vector<gr_complex>& constellation, int print_samp_interval, const std::vector<gr_complex>& sequence);
+	symbol_bert_impl(const std::vector<gr_complex>& constellation, int print_samp_interval, const std::vector<gr_complex>& sequence);
 	~symbol_bert_impl();
 	int work( int noutput_items, gr_vector_const_void_star &input_items, gr_vector_void_star &output_items);
 };

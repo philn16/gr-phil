@@ -4,15 +4,9 @@ category: '[gr_phil]'
 
 templates:
   imports: import gr_phil
-  make: gr_phil.symbol_bert(${nbits_prbs.intval},${constellation},${print_samp_interval},${sequence})
+  make: gr_phil.symbol_bert(${constellation},${print_samp_interval},${sequence})
 
 parameters:
-- id: nbits_prbs
-  label: nbits_prbs
-  dtype: enum
-  options: [8, 12]
-  option_attributes:
-    intval: [8,12]
 - id: sequence
   label: sequence
   dtype: complex_vector

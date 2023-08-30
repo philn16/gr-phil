@@ -241,7 +241,7 @@ blocks:
   id: variable
   parameters:
     comment: ''
-    value: constellation[get_seq(8,2)]
+    value: constellation[get_seq_int(2,8)]
   states:
     bus_sink: false
     bus_source: false
@@ -249,27 +249,6 @@ blocks:
     coordinate: [38, 945]
     rotation: 0
     state: true
-- name: QPSK_Mod
-  id: digital_constellation_modulator
-  parameters:
-    affinity: ''
-    alias: ''
-    comment: ''
-    constellation: QPSK_const
-    differential: 'False'
-    excess_bw: eb
-    log: 'False'
-    maxoutbuf: '0'
-    minoutbuf: '0'
-    samples_per_symbol: sps
-    verbose: 'False'
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [668, 373]
-    rotation: 0
-    state: disabled
 - name: analog_noise_source_x_0
   id: analog_noise_source_x
   parameters:
@@ -286,7 +265,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1064, 636.0]
+    coordinate: [945, 609]
     rotation: 0
     state: true
 - name: analog_sig_source_x_0
@@ -308,25 +287,9 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [814, 210]
+    coordinate: [639, 266]
     rotation: 0
     state: enabled
-- name: bit_to_byte
-  id: blocks_pack_k_bits_bb
-  parameters:
-    affinity: ''
-    alias: ''
-    comment: ''
-    k: '8'
-    maxoutbuf: '0'
-    minoutbuf: '0'
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [516, 397]
-    rotation: 0
-    state: disabled
 - name: blocks_add_xx_0
   id: blocks_add_xx
   parameters:
@@ -342,7 +305,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1304, 480.0]
+    coordinate: [1320, 495]
     rotation: 0
     state: true
 - name: blocks_message_debug_0
@@ -355,7 +318,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [2081, 273]
+    coordinate: [1997, 406]
     rotation: 0
     state: true
 - name: blocks_multiply_const_vxx_0
@@ -373,7 +336,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1640, 636.0]
+    coordinate: [1476, 597]
     rotation: 0
     state: true
 - name: blocks_multiply_xx_0
@@ -391,7 +354,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1207, 322]
+    coordinate: [1029, 422]
     rotation: 0
     state: enabled
 - name: blocks_probe_rate_0
@@ -410,7 +373,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1632, 148.0]
+    coordinate: [1489, 387]
     rotation: 0
     state: true
 - name: blocks_throttle_0
@@ -429,7 +392,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1437, 1013]
+    coordinate: [1504, 994]
     rotation: 0
     state: enabled
 - name: blocks_vector_source_x_0
@@ -449,7 +412,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [577, 536]
+    coordinate: [623, 485]
     rotation: 0
     state: enabled
 - name: digital_costas_loop_cc_0_0
@@ -467,29 +430,9 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1108, 1007]
+    coordinate: [1110, 1019]
     rotation: 0
     state: enabled
-- name: digital_glfsr_source_x_0
-  id: digital_glfsr_source_x
-  parameters:
-    affinity: ''
-    alias: ''
-    comment: ''
-    degree: '31'
-    mask: '0'
-    maxoutbuf: '0'
-    minoutbuf: '0'
-    repeat: 'True'
-    seed: '1'
-    type: byte
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [340, 373]
-    rotation: 0
-    state: disabled
 - name: digital_symbol_sync_xx_0_0
   id: digital_symbol_sync_xx
   parameters:
@@ -526,14 +469,13 @@ blocks:
     constellation: constellation
     maxoutbuf: '0'
     minoutbuf: '0'
-    nbits_prbs: '8'
     print_samp_interval: int(1e5)
     sequence: sequence
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1710, 1100]
+    coordinate: [1777, 1081]
     rotation: 0
     state: enabled
 - name: import_0
@@ -541,7 +483,7 @@ blocks:
   parameters:
     alias: ''
     comment: ''
-    imports: from pyphil.symbol_sync import get_seq
+    imports: from pyphil.symbol_sync import get_seq_int
   states:
     bus_sink: false
     bus_source: false
@@ -693,7 +635,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [2068, 1032]
+    coordinate: [2149, 989]
     rotation: 0
     state: enabled
 - name: qtgui_const_sink_x_0_1_0
@@ -887,10 +829,8 @@ blocks:
     state: true
 
 connections:
-- [QPSK_Mod, '0', blocks_multiply_xx_0, '1']
 - [analog_noise_source_x_0, '0', blocks_add_xx_0, '1']
 - [analog_sig_source_x_0, '0', blocks_multiply_xx_0, '0']
-- [bit_to_byte, '0', QPSK_Mod, '0']
 - [blocks_add_xx_0, '0', blocks_multiply_const_vxx_0, '0']
 - [blocks_add_xx_0, '0', blocks_probe_rate_0, '0']
 - [blocks_multiply_const_vxx_0, '0', digital_symbol_sync_xx_0_0, '0']
@@ -901,7 +841,6 @@ connections:
 - [blocks_throttle_0, '0', gr_phil_symbol_bert_0, '0']
 - [blocks_vector_source_x_0, '0', blocks_multiply_xx_0, '1']
 - [digital_costas_loop_cc_0_0, '0', blocks_throttle_0, '0']
-- [digital_glfsr_source_x_0, '0', bit_to_byte, '0']
 - [digital_symbol_sync_xx_0_0, '0', digital_costas_loop_cc_0_0, '0']
 - [gr_phil_symbol_bert_0, '0', qtgui_const_sink_x_0_1, '0']
 
