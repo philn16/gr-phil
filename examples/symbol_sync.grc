@@ -49,12 +49,33 @@ blocks:
     bus_structure: null
     coordinate: [245, 11]
     rotation: 0
-    state: enabled
+    state: disabled
+- name: amplitude
+  id: variable_qtgui_range
+  parameters:
+    comment: ''
+    gui_hint: 1,0
+    label: amplitude
+    min_len: '200'
+    orient: Qt.Horizontal
+    rangeType: float
+    start: '0.01'
+    step: 1e-3
+    stop: '4'
+    value: '1'
+    widget: counter_slider
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [724, 37]
+    rotation: 0
+    state: true
 - name: awgn_amp
   id: variable_qtgui_range
   parameters:
     comment: ''
-    gui_hint: 3,0
+    gui_hint: 4,0
     label: ''
     min_len: '200'
     orient: Qt.Horizontal
@@ -68,7 +89,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1200, 36.0]
+    coordinate: [1235, 48]
     rotation: 0
     state: true
 - name: constellation
@@ -80,7 +101,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [352, 264.0]
+    coordinate: [32, 630]
     rotation: 0
     state: true
 - name: eb
@@ -92,14 +113,14 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [231, 117]
+    coordinate: [38, 793]
     rotation: 0
     state: enabled
 - name: freq_loop_bw
   id: variable_qtgui_range
   parameters:
     comment: ''
-    gui_hint: 4,0
+    gui_hint: 5,0
     label: freq_loop_bw
     min_len: '200'
     orient: Qt.Horizontal
@@ -120,7 +141,7 @@ blocks:
   id: variable_qtgui_range
   parameters:
     comment: ''
-    gui_hint: 2,0
+    gui_hint: 3,0
     label: freq_offset
     min_len: '200'
     orient: Qt.Horizontal
@@ -137,27 +158,6 @@ blocks:
     coordinate: [1068, 41]
     rotation: 0
     state: true
-- name: multiply
-  id: variable_qtgui_range
-  parameters:
-    comment: ''
-    gui_hint: 0,0
-    label: multiply
-    min_len: '200'
-    orient: Qt.Horizontal
-    rangeType: float
-    start: '0.01'
-    step: 1e-3
-    stop: '4'
-    value: '1'
-    widget: counter_slider
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [724, 37]
-    rotation: 0
-    state: true
 - name: nfilts
   id: variable
   parameters:
@@ -167,14 +167,35 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [29, 110]
+    coordinate: [34, 711]
+    rotation: 0
+    state: true
+- name: phase
+  id: variable_qtgui_range
+  parameters:
+    comment: ''
+    gui_hint: 0,0
+    label: phase (cycles)
+    min_len: '200'
+    orient: Qt.Horizontal
+    rangeType: float
+    start: '0'
+    step: 1e-3
+    stop: '1'
+    value: '0'
+    widget: counter_slider
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [542, 35]
     rotation: 0
     state: true
 - name: resamp_rate
   id: variable_qtgui_range
   parameters:
     comment: ''
-    gui_hint: 1,0
+    gui_hint: 2,0
     label: resamp_rate
     min_len: '200'
     orient: Qt.Horizontal
@@ -200,7 +221,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [48, 252.0]
+    coordinate: [31, 550]
     rotation: 0
     state: enabled
 - name: rrc_taps_nfilts
@@ -213,7 +234,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [49, 337]
+    coordinate: [31, 469]
     rotation: 0
     state: enabled
 - name: QPSK_Mod
@@ -322,7 +343,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1744, 240.0]
+    coordinate: [2081, 273]
     rotation: 0
     state: true
 - name: blocks_multiply_const_vxx_0
@@ -331,7 +352,7 @@ blocks:
     affinity: ''
     alias: ''
     comment: ''
-    const: multiply
+    const: amplitude * np.exp(1j*2*np.pi*phase)
     maxoutbuf: '0'
     minoutbuf: '0'
     type: complex
@@ -492,7 +513,7 @@ blocks:
     comment: ''
     constellation: constellation
     nbits_prbs: '8'
-    print_samp_interval: int(1e4)*0
+    print_samp_interval: int(1e5)
   states:
     bus_sink: false
     bus_source: false
@@ -510,7 +531,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [368, 204.0]
+    coordinate: [35, 333]
     rotation: 0
     state: true
 - name: import_1
@@ -523,7 +544,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [496, 220.0]
+    coordinate: [36, 270]
     rotation: 0
     state: true
 - name: import_2
@@ -536,7 +557,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [70, 436]
+    coordinate: [30, 399]
     rotation: 0
     state: true
 - name: note_0
@@ -582,7 +603,7 @@ blocks:
     color9: '"red"'
     comment: ''
     grid: 'True'
-    gui_hint: 5,0,20,1
+    gui_hint: 6,0,20,1
     label1: Before Carrier Sync
     label10: ''
     label2: After Carrier Sync
@@ -831,7 +852,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [112, 116.0]
+    coordinate: [36, 121]
     rotation: 0
     state: true
 
