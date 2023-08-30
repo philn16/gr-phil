@@ -455,7 +455,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [904, 968.0]
+    coordinate: [911, 974]
     rotation: 0
     state: enabled
 - name: digital_glfsr_source_x_0
@@ -512,13 +512,15 @@ blocks:
     alias: ''
     comment: ''
     constellation: constellation
+    maxoutbuf: '0'
+    minoutbuf: '0'
     nbits_prbs: '8'
     print_samp_interval: int(1e5)
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1512, 1044]
+    coordinate: [1513, 1067]
     rotation: 0
     state: enabled
 - name: import_0
@@ -663,7 +665,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1512, 972]
+    coordinate: [1871, 999]
     rotation: 0
     state: enabled
 - name: qtgui_const_sink_x_0_1_0
@@ -755,7 +757,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1808, 548.0]
+    coordinate: [1920, 561]
     rotation: 0
     state: disabled
 - name: qtgui_freq_sink_x_0
@@ -835,7 +837,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1808, 848.0]
+    coordinate: [1943, 706]
     rotation: 0
     state: disabled
 - name: sps
@@ -869,11 +871,11 @@ connections:
 - [blocks_multiply_xx_0, '0', blocks_add_xx_0, '0']
 - [blocks_probe_rate_0, rate, blocks_message_debug_0, print]
 - [blocks_throttle_0, '0', gr_phil_symbol_bert_0, '0']
-- [blocks_throttle_0, '0', qtgui_const_sink_x_0_1, '0']
 - [blocks_vector_source_x_0, '0', blocks_multiply_xx_0, '1']
 - [digital_costas_loop_cc_0_0, '0', blocks_throttle_0, '0']
 - [digital_glfsr_source_x_0, '0', bit_to_byte, '0']
 - [digital_symbol_sync_xx_0_0, '0', digital_costas_loop_cc_0_0, '0']
+- [gr_phil_symbol_bert_0, '0', qtgui_const_sink_x_0_1, '0']
 
 metadata:
   file_format: 1

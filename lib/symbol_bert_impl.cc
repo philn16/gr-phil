@@ -1,5 +1,6 @@
 #include <gnuradio/io_signature.h>
 #include "symbol_bert_impl.h"
+#include <complex>
 #include <iostream>
 using std::cout;
 using std::endl;
@@ -21,7 +22,7 @@ static int log2(int n) {
 }
 
 symbol_bert_impl::symbol_bert_impl(int nbits_prbs, const std::vector<gr_complex>& constellation, int print_samp_interval)
-	: gr::sync_block("symbol_bert", gr::io_signature::make(1,1, sizeof(gr_complex)), gr::io_signature::make(0,0,sizeof(gr_complex))) {
+	: gr::sync_block("symbol_bert", gr::io_signature::make(1,1, sizeof(gr_complex)), gr::io_signature::make(1,1,sizeof(gr_complex))) {
 
 	cout << "nbits_prbs:\n\t" << nbits_prbs << "\n";
 	cout << "constellation:\n";
@@ -44,6 +45,11 @@ int symbol_bert_impl::work(int noutput_items, gr_vector_const_void_star &input_i
 	std::vector<gr_complex> in_v(in,in+noutput_items);
 
 	Symbol_Sync::Work_Return ret = sync.work(in_v);
+
+	for( int i=0; i < ret.decision_actual.size(); i++) {
+		// we want the output to be phase corrected but not amplitude corrected so that a combiner algorithm might combine multiple signals intellegently
+		out[i] = ret.mult_to_decision[i] / std::abs(ret.mult_to_decision[i]) * in[i];
+	}
 
 	for( bool error : ret.error ) {
 		total_samp_count++;

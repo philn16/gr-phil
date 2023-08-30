@@ -28,4 +28,10 @@ inputs:
   dtype: complex
   vlen: 1
 
+outputs:
+- label: out
+  domain: stream
+  dtype: complex
+  vlen: 1
+
 file_format: 1

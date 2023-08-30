@@ -6,6 +6,15 @@
 namespace gr {
 namespace gr_phil {
 
+/*
+Inputs:
+	Takes a sync pattern as a predetermined PRBS sequence of some number of bits.
+	Takes timing syncronized constellation points
+
+Outputs:
+	Prints bit error rate
+	Outputs the symbols after performing phase synchronization based on the PRBS sequence
+*/
 class symbol_bert_impl : public symbol_bert {
   private:
 	Symbol_Sync sync;
